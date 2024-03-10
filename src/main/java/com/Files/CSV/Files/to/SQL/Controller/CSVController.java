@@ -5,19 +5,17 @@ import com.Files.CSV.Files.to.SQL.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class CSVController {
     @Autowired
-    private UserService userService;  // Assuming UserService is your service class
+    private UserService userService;
 
     @PostMapping("/upload-csv")
     public ResponseEntity<String> uploadCsv(@RequestParam("file") MultipartFile file) {
@@ -29,4 +27,9 @@ public class CSVController {
                     .body("Error occurred while processing the CSV file.");
         }
 }
+    @GetMapping("/get-all-users")
+    public ResponseEntity<List<Usermodel>> getAllUsers() {
+        List<Usermodel> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
 }

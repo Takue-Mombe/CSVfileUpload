@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -35,5 +36,8 @@ public class UserService {
                 jpArepo.save(user);
             }
         }
+    }
+    public List<Usermodel> getAllUsers() {
+        return jpArepo.findAll();
     }
 }
