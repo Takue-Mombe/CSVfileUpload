@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Fetch data from the Spring Boot API
-    $.get("/api/get-all-users", function (data) {
+    $.get("http://localhost:8080/api/get-all-users", function (data) {
         // Update the table with fetched data
         updateTable(data);
     });
